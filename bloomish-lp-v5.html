@@ -57,7 +57,7 @@
       height: 100%;
       overflow: hidden;
       background:
-        linear-gradient(rgba(244,244,244,.84), rgba(244,244,244,.84)),
+        linear-gradient(rgba(244,244,244,.55), rgba(244,244,244,.55)),
         url('images/LINE_ALBUM_プロモ用_260509_162.jpg') center/cover no-repeat fixed;
     }
 
@@ -77,7 +77,7 @@
       align-items: center;
       justify-content: center;
       padding: 48px 60px;
-      background: rgba(244,244,244,.55);
+      background: transparent;
       z-index: 10;
     }
 
@@ -86,6 +86,7 @@
       margin-left: var(--nav-w);
       height: 100vh;
       overflow-y: scroll;
+      background: var(--bg);
     }
     /* 左パネル内：ブランド小ラベル */
     .l-nav__logo {
