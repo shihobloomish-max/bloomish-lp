@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お花教室プロデュース講座 | bloomish Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+JP:wght@200;300;400;500&family=Ruthie&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Seasons';
+      src: url('fonts/theseasons-reg.ttf') format('truetype'),
+           local('The Seasons Regular'), local('The Seasons'), local('Seasons');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Seasons';
+      src: url('fonts/theseasons-reg.ttf') format('truetype'),
+           local('The Seasons Regular'), local('The Seasons'), local('Seasons');
+      font-weight: 300;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Exotic350';
+      src: url('fonts/Exotic 350 Light BT.ttf') format('truetype'),
+           local('Exotic 350 Light BT'), local('Exotic350');
+      font-weight: 300;
+      font-display: swap;
+    }
+
+    :root {
+      --bg:          #f4f4f4;
+      --text:        #272727;
+      --sub:         #666;
+      --dark:        #434343;
+      --mid:         #dddbe2;
+      --light:       #e8e8eb;
+      --outline:     #c8cace;
+      --white:       #ffffff;
+      --gold:        #b89a52;
+      --nav-w:       50vw;
+      --font-en:     'Seasons', 'Cormorant Garamond', 游明朝体, 'Yu Mincho', YuMincho, 'ヒラギノ明朝 Pro', serif;
+      --font-jp:     'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+      --font-script: 'Ruthie', cursive;
+      --font-logo:   'Exotic350', 'Exotic 350 Light BT', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: var(--font-jp);
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      letter-spacing: 1.6px;
+      line-height: 1.8;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* ── LAYOUT: 左固定パネル + 右は body スクロール ── */
+    .lp-wrap { min-height: 100vh; }
+
+    /* 左パネル — position:fixed、bodyはスクロール */
+    .l-nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 60px;
+      background: var(--bg);
+      z-index: 10;
+    }
+
+    /* 右コンテンツ — 独立スクロール */
+    .l-content {
+      margin-left: var(--nav-w);
+      height: 100vh;
+      overflow-y: scroll;
+    }
+    /* 左パネル内：ブランド小ラベル */
+    .l-nav__logo {
+      font-family: var(--font-logo);
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-align: center;
+      color: var(--text);
+      opacity: .65;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* 左パネル内：大見出し + スクリプトオーバーレイ */
+    .l-nav__title-wrap {
+      position: relative;
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .l-nav__title-en {
+      font-family: var(--font-en);
+      font-size: clamp(52px, 5.5vw, 86px);
+      font-weight: 400;
+      letter-spacing: 10px;
+      line-height: 1.05;
+      color: var(--text);
+    }
+    .l-nav__title-script {
+      font-family: var(--font-script);
+      font-weight: 400;
+      font-size: clamp(52px, 5.2vw, 82px);
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 0;
+      display: block;
+      margin-top: -16px;
+      position: relative;
+      right: -12px;
+    }
+
+    .l-nav__links {
+      list-style: none;
+      margin-bottom: 36px;
+    }
+    .l-nav__links li { text-align: center; }
+    .l-nav__links a {
+      display: block;
+      padding: 7px 12px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 3.5px;
+      color: var(--text);
+      text-decoration: none;
+      opacity: .45;
+      transition: opacity .2s;
+    }
+    .l-nav__links a:hover,
+    .l-nav__links a.active { opacity: 1; }
+    .l-nav__links a.active {
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 6px;
+    }
+    .l-nav__foot {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-width: 200px;
+    }
+    .l-nav__btn {
+      display: block;
+      text-align: center;
+      padding: 10px 6px;
+      font-family: var(--font-en);
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-decoration: none;
+      border: 1px solid var(--text);
+      color: var(--text);
+      transition: all .22s;
+    }
+    .l-nav__btn:hover { background: var(--text); color: var(--white); }
+    .l-nav__btn--line {
+      background: #06C755;
+      border-color: #06C755;
+      color: var(--white);
+    }
+    .l-nav__btn--line:hover { opacity: .85; background: #06C755; color: var(--white); }
+
+    /* (right content margin set in layout block above) */
+
+    /* ── SECTION BASE ── */
+    .sec { padding: 96px 72px; }
+    .sec--dark   { background: var(--dark); color: var(--white); }
+    .sec--mid    { background: var(--mid); }
+    .sec--light  { background: var(--light); }
+    .sec--outline { background: var(--outline); }
+    .sec--white  { background: var(--white); }
+
+    .sec-en {
+      font-family: var(--font-en);
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 10px;
+    }
+    .sec-jp {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 2.5px;
+      opacity: .6;
+      margin-bottom: 60px;
+    }
+    .sec-label {
+      font-family: var(--font-en);
+      font-size: 9px;
+      letter-spacing: 4px;
+      opacity: .4;
+      margin-bottom: 10px;
+    }
+    .dark .sec-label,
+    .sec--dark .sec-label { color: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 580px;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/LINE_ALBUM_プロモ用_260509_162.jpg') center/cover no-repeat;
+    }
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(244,244,244,.18);
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 64px 72px;
+    }
+    .hero__en {
+      font-family: var(--font-en);
+      font-size: clamp(44px, 7vw, 78px);
+      font-weight: 300;
+      letter-spacing: 10px;
+      line-height: 1.1;
+      color: var(--white);
+      text-shadow: 0 2px 24px rgba(0,0,0,.2);
+      margin-bottom: 20px;
+    }
+    .hero__jp {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-shadow: 0 1px 8px rgba(0,0,0,.2);
+      margin-bottom: 6px;
+    }
+    .hero__en-prog {
+      font-family: var(--font-logo);
+      font-size: clamp(13px, 1.6vw, 20px);
+      font-weight: 300;
+      letter-spacing: 8px;
+      display: block;
+      margin-top: 6px;
+    }
+    .hero__sub {
+      font-family: var(--font-logo);
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,.7);
+    }
+
+    /* ── TROUBLE (BEFORE) ── */
+    .trouble-list {
+      list-style: none;
+      border-top: 1px solid rgba(39,39,39,.12);
+    }
+    .trouble-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(39,39,39,.12);
+      font-size: 15px;
+      letter-spacing: 1.8px;
+    }
+    .t-num {
+      font-family: var(--font-en);
+      font-size: 10px;
+      letter-spacing: 2px;
+      opacity: .35;
+      min-width: 24px;
+    }
+
+    /* ── SOLUTION ── */
+    .sol-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2px;
+      margin-bottom: 48px;
+    }
+    .sol-card {
+      background: var(--white);
+      padding: 40px 28px;
+    }
+    .sol-num {
+      font-family: var(--font-en);
+      font-size: 30px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      opacity: .2;
+      margin-bottom: 16px;
+    }
+    .sol-title {
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .sol-body {
+      font-size: 13px;
+      letter-spacing: 1.3px;
+      line-height: 2.1;
+      opacity: .72;
+    }
+    .callout {
+      background: var(--text);
+      color: var(--white);
+      padding: 40px 48px;
+      text-align: center;
+    }
+    .callout__main {
+      font-family: var(--font-jp);
+      font-size: 18px;
+      letter-spacing: 2.5px;
+      margin-bottom: 12px;
+    }
+    .callout__sub {
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      line-height: 2;
+      opacity: .65;
+      margin-bottom: 16px;
+    }
+    .callout__accent {
+      font-family: var(--font-en);
+      font-size: 13px;
+      letter-spacing: 2.5px;
+    }
+
+    /* ── PROFILE ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .profile-img img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px;
+      background: rgba(39,39,39,.1);
+      margin-top: 2px;
+    }
+    .kpi-cell {
+      background: var(--bg);
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .kpi-num {
+      font-family: var(--font-en);
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+    }
+    .kpi-label {
+      font-size: 9px;
+      letter-spacing: 1.3px;
+      opacity: .55;
+      margin-top: 4px;
+    }
+    .prof-name-en {
+      font-family: var(--font-en);
+      font-size: 30px;
+      font-weight: 300;
+      letter-spacing: 5px;
+      margin-bottom: 4px;
+    }
+    .prof-name-jp {
+      font-size: 12px;
+      letter-spacing: 3px;
+      opacity: .55;
+      margin-bottom: 6px;
+    }
+    .prof-role {
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      opacity: .55;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(39,39,39,.12);
+    }
+    .prof-facts {
+      list-style: none;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      line-height: 2.4;
+      opacity: .8;
+    }
+    .prof-facts li::before { content: '─ '; opacity: .4; }
+    .prof-quote {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--mid);
+      font-size: 13px;
+      letter-spacing: 1.6px;
+      line-height: 2.2;
+    }
+
+    /* ── POINT ── */
+    .point-list {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+    .point-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+    .point-item.rev { direction: rtl; }
+    .point-item.rev > * { direction: ltr; }
+    .point-img img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .pt-num {
+      font-family: var(--font-en);
+      font-size: 10px;
+      letter-spacing: 4px;
+      opacity: .35;
+      margin-bottom: 12px;
+    }
+    .pt-en {
+      font-family: var(--font-en);
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .pt-jp {
+      font-size: 13px;
+      letter-spacing: 2px;
+      opacity: .6;
+      margin-bottom: 20px;
+    }
+    .pt-body {
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      line-height: 2.1;
+      opacity: .82;
+    }
+    .pt-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 18px;
+    }
+    .pt-tag {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      padding: 4px 12px;
+      border: 1px solid rgba(39,39,39,.28);
+    }
+
+    /* ── CURRICULUM ── */
+    .curriculum-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .lesson-card {
+      background: var(--white);
+      padding: 40px 32px;
+    }
+    .lesson-label {
+      font-family: var(--font-en);
+      font-size: 9px;
+      letter-spacing: 4px;
+      opacity: .4;
+      margin-bottom: 16px;
+    }
+    .lesson-en {
+      font-family: var(--font-en);
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-bottom: 5px;
+    }
+    .lesson-jp {
+      font-size: 13px;
+      letter-spacing: 2px;
+      opacity: .65;
+      margin-bottom: 14px;
+    }
+    .lesson-meta {
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      opacity: .5;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(39,39,39,.1);
+    }
+    .lesson-items {
+      list-style: none;
+      font-size: 13px;
+      letter-spacing: 1.4px;
+      line-height: 2.2;
+    }
+    .lesson-items li::before { content: '・'; opacity: .5; }
+
+    /* ── OUTLINE ── */
+    .outline-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .outline-table tr { border-bottom: 1px solid rgba(39,39,39,.1); }
+    .outline-table td {
+      padding: 20px 16px;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      vertical-align: top;
+    }
+    .outline-table td:first-child {
+      font-family: var(--font-en);
+      font-size: 9px;
+      letter-spacing: 3px;
+      opacity: .45;
+      white-space: nowrap;
+      width: 130px;
+      padding-top: 22px;
+    }
+    .month-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+    .month-card {
+      background: var(--white);
+      padding: 28px 20px;
+    }
+    .month-label {
+      font-family: var(--font-en);
+      font-size: 9px;
+      letter-spacing: 3px;
+      opacity: .4;
+      margin-bottom: 12px;
+    }
+    .month-body {
+      font-size: 13px;
+      letter-spacing: 1.4px;
+      line-height: 2;
+      opacity: .78;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { border-top: 1px solid rgba(39,39,39,.1); }
+    .faq-item { border-bottom: 1px solid rgba(39,39,39,.1); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 0;
+      cursor: pointer;
+    }
+    .faq-q-mark {
+      font-family: var(--font-en);
+      font-size: 13px;
+      letter-spacing: 2px;
+      opacity: .38;
+      min-width: 20px;
+    }
+    .faq-q-text {
+      flex: 1;
+      font-size: 14px;
+      letter-spacing: 1.7px;
+    }
+    .faq-toggle {
+      font-family: var(--font-en);
+      font-size: 22px;
+      font-weight: 300;
+      opacity: .35;
+      transition: transform .3s;
+      line-height: 1;
+    }
+    .faq-toggle.open { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+    .faq-a-inner {
+      padding: 0 0 24px 36px;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      line-height: 2.1;
+      opacity: .72;
+    }
+
+    /* ── FLOW ── */
+    .flow-steps { border-top: 1px solid rgba(39,39,39,.1); }
+    .flow-step {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 30px 0;
+      border-bottom: 1px solid rgba(39,39,39,.1);
+    }
+    .flow-num {
+      font-family: var(--font-en);
+      font-size: 38px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      opacity: .18;
+      min-width: 50px;
+      line-height: 1;
+    }
+    .flow-title {
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .flow-body {
+      font-size: 13px;
+      letter-spacing: 1.4px;
+      line-height: 2;
+      opacity: .7;
+    }
+
+    /* ── MESSAGE ── */
+    .message-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .message-text {
+      font-size: 15px;
+      letter-spacing: 2px;
+      line-height: 2.4;
+      margin-bottom: 36px;
+    }
+    .message-sig {
+      font-family: var(--font-en);
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 5px;
+      opacity: .45;
+    }
+
+    /* ── JOIN / CTA ── */
+    .join-sec {
+      background: var(--dark);
+      color: var(--white);
+      padding: 96px 72px;
+      text-align: center;
+    }
+    .join-en {
+      font-family: var(--font-en);
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 300;
+      letter-spacing: 10px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .join-jp {
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      opacity: .6;
+      margin-bottom: 52px;
+    }
+    .join-btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .join-btn {
+      display: inline-block;
+      min-width: 300px;
+      padding: 20px 40px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.5);
+      color: var(--white);
+      transition: background .22s;
+    }
+    .join-btn:hover { background: rgba(255,255,255,.1); }
+    .join-btn--line {
+      background: #06C755;
+      border-color: #06C755;
+    }
+    .join-btn--line:hover { opacity: .85; background: #06C755; }
+    .join-note {
+      font-size: 11px;
+      letter-spacing: 2px;
+      opacity: .5;
+      line-height: 2;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,.4);
+      padding: 36px 72px;
+      text-align: center;
+      font-family: var(--font-en);
+      font-size: 9px;
+      letter-spacing: 3px;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .72s ease, transform .72s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .12s; }
+    .d2 { transition-delay: .22s; }
+    .d3 { transition-delay: .32s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      html, body { height: auto; overflow: auto; }
+      .l-nav { display: none; }
+      .l-content {
+        margin-left: 0;
+        height: auto;
+        overflow-y: visible;
+      }
+      .sec { padding: 64px 28px; }
+      .sol-grid { grid-template-columns: 1fr; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .point-item, .point-item.rev { grid-template-columns: 1fr; direction: ltr; }
+      .curriculum-grid { grid-template-columns: 1fr; }
+      .month-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lp-wrap">
+
+  <!-- ═══ LEFT NAV ═══ -->
+  <nav class="l-nav">
+    <div class="l-nav__logo">bloomish Academy</div>
+    <div class="l-nav__title-wrap">
+      <p class="l-nav__title-en">FLOWER<br>SCHOOL</p>
+      <span class="l-nav__title-script">Produce</span>
+    </div>
+    <ul class="l-nav__links">
+      <li><a href="#trouble">BEFORE</a></li>
+      <li><a href="#solution">SOLUTION</a></li>
+      <li><a href="#profile">PROFILE</a></li>
+      <li><a href="#point">POINT</a></li>
+      <li><a href="#curriculum">CURRICULUM</a></li>
+      <li><a href="#outline">OUTLINE</a></li>
+      <li><a href="#faq">Q &amp; A</a></li>
+      <li><a href="#flow">FLOW</a></li>
+      <li><a href="#message">MESSAGE</a></li>
+      <li><a href="#join">JOIN</a></li>
+    </ul>
+    <div class="l-nav__foot">
+      <a href="#join" class="l-nav__btn">無料相談へ</a>
+      <a href="https://lin.ee/ZzdKPx2" target="_blank" class="l-nav__btn l-nav__btn--line">LINE</a>
+    </div>
+  </nav>
+
+  <!-- ═══ RIGHT CONTENT ═══ -->
+  <main class="l-content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__bg"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <div class="hero__en reveal">FLOWER SCHOOL<br><span class="hero__en-prog">PRODUCE PROGRAM</span></div>
+        <p class="hero__jp reveal d1">好きなお花を、好きで終わらせない。</p>
+        <p class="hero__sub reveal d2">bloomish Academy</p>
+      </div>
+    </section>
+
+    <!-- BEFORE -->
+    <section class="sec" id="trouble">
+      <p class="sec-label reveal">BEFORE</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">For You</h2>
+      <p class="sec-jp reveal">こんな悩みはありませんか</p>
+      <ul class="trouble-list">
+        <li class="reveal"><span class="t-num">01</span>資格は取ったのに、何から始めればいいか分からない</li>
+        <li class="reveal d1"><span class="t-num">02</span>体験レッスンに来ても、本コースにつながらない</li>
+        <li class="reveal d1"><span class="t-num">03</span>Instagram、毎日投稿しているのに誰も見てくれない</li>
+        <li class="reveal d2"><span class="t-num">04</span>オリジナル作品が作れない、コースが作れない</li>
+        <li class="reveal d2"><span class="t-num">05</span>他の先生のSNSを見て、落ち込む</li>
+        <li class="reveal d3"><span class="t-num">06</span>どうせ趣味だし…とあきらめている</li>
+      </ul>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="sec sec--mid" id="solution">
+      <p class="sec-label reveal">SOLUTION</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Why Not Selling</h2>
+      <p class="sec-jp reveal">売れないのは、商品が悪いからではありません</p>
+      <div class="sol-grid reveal">
+        <div class="sol-card">
+          <div class="sol-num">01</div>
+          <div class="sol-title">魅せ方</div>
+          <p class="sol-body">世界観・ブランドで「この先生だ」と伝える。信頼が自然に生まれる。</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-num">02</div>
+          <div class="sol-title">届け方</div>
+          <p class="sol-body">言いたいことではなく、相手が知りたいことを発信。共感した人が集まる。</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-num">03</div>
+          <div class="sol-title">導　線</div>
+          <p class="sol-body">インスタ→LINEの流れを仕組みとして整える。追いかけなくていい。</p>
+        </div>
+      </div>
+      <div class="callout reveal" style="margin-top:2px;">
+        <p class="callout__main">発信しているのに、なぜか集客できない</p>
+        <p class="callout__sub">投稿している・リールも頑張っている・ストーリーズもやっている<br>でも、お申し込みにつながらない</p>
+        <p class="callout__accent">原因は「発信量」ではなく「順番」にあります</p>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="sec" id="profile">
+      <p class="sec-label reveal">PROFILE</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Instructor</h2>
+      <p class="sec-jp reveal">講師紹介</p>
+      <div class="profile-grid">
+        <div class="reveal">
+          <img src="images/profile-01.jpg" alt="こうのしほこ" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;">
+          <div class="kpi-row">
+            <div class="kpi-cell"><div class="kpi-num">60名</div><div class="kpi-label">認定講師を輩出</div></div>
+            <div class="kpi-cell"><div class="kpi-num">1万+</div><div class="kpi-label">のべ生徒数</div></div>
+            <div class="kpi-cell"><div class="kpi-num">¥2000万</div><div class="kpi-label">年商達成</div></div>
+          </div>
+        </div>
+        <div class="reveal d1">
+          <div class="prof-name-en">Shihoko Kono</div>
+          <div class="prof-name-jp">こうのしほこ</div>
+          <div class="prof-role">bloomish 代表 ／ お花教室プロデューサー</div>
+          <ul class="prof-facts">
+            <li>全国に60名の認定講師を輩出</li>
+            <li>生徒数のべ1万人以上</li>
+            <li>高島屋・六本木ヒルズなどで講師を歴任</li>
+            <li>女性誌（LEE・VERY・HARSなど）への掲載多数</li>
+            <li>大手化粧品会社・大手リボン会社カタログ掲載</li>
+            <li>新作発表会装花・店舗装飾を手がける</li>
+            <li>早稲田大学教育学部卒、元航空会社</li>
+          </ul>
+          <div class="prof-quote">
+            NYでのレッスン、全国出張レッスン、Aman Tokyoでのパーティー開催など、ひたすら行動した結果——<strong>年商2000万円達成。</strong>その経験を体系化した、花の先生のための講座です。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POINT -->
+    <section class="sec sec--light" id="point">
+      <p class="sec-label reveal">POINT</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">What You Get</h2>
+      <p class="sec-jp reveal">この講座でできること</p>
+      <div class="point-list">
+        <div class="point-item reveal">
+          <div class="point-img"><img src="images/point-01.jpg" alt="世界観づくり"></div>
+          <div>
+            <div class="pt-num">Point 01</div>
+            <div class="pt-en">World View</div>
+            <div class="pt-jp">世界観を言語化する</div>
+            <p class="pt-body">「なんとなく好き」を「これが私のスタイル」に変える。あなただけのコンセプトを作ることで、フォロワーが共感し、申し込みにつながる発信が自然に生まれます。</p>
+            <div class="pt-tags">
+              <span class="pt-tag">コンセプト設計</span>
+              <span class="pt-tag">ブランディング</span>
+              <span class="pt-tag">世界観構築</span>
+            </div>
+          </div>
+        </div>
+        <div class="point-item rev reveal">
+          <div class="point-img"><img src="images/point-02.jpg" alt="SNS戦略"></div>
+          <div>
+            <div class="pt-num">Point 02</div>
+            <div class="pt-en">SNS Strategy</div>
+            <div class="pt-jp">SNSで申し込みを作る</div>
+            <p class="pt-body">投稿しても反応がない——その原因は発信量でなく「順番」。インスタグラムのアカウント設計からリール・Canvaの使い方まで、実践的なSNS戦略を学びます。</p>
+            <div class="pt-tags">
+              <span class="pt-tag">Instagram戦略</span>
+              <span class="pt-tag">リール制作</span>
+              <span class="pt-tag">Canva</span>
+            </div>
+          </div>
+        </div>
+        <div class="point-item reveal">
+          <div class="point-img"><img src="images/point-03.jpg" alt="高単価コース"></div>
+          <div>
+            <div class="pt-num">Point 03</div>
+            <div class="pt-en">High Value Course</div>
+            <div class="pt-jp">高単価コースを設計する</div>
+            <p class="pt-body">看板メニューとなる継続コースを作り、満席・完売の仕組みを整える。値下げしなくても「この先生に習いたい」と選ばれる商品設計を手に入れます。</p>
+            <div class="pt-tags">
+              <span class="pt-tag">コース設計</span>
+              <span class="pt-tag">高単価化</span>
+              <span class="pt-tag">集客設計</span>
+            </div>
+          </div>
+        </div>
+        <div class="point-item rev reveal">
+          <div class="point-img"><img src="images/point-04.jpg" alt="仕入れ同行"></div>
+          <div>
+            <div class="pt-num">Point 04</div>
+            <div class="pt-en">Sourcing Tour</div>
+            <div class="pt-jp">仕入れの目を養う（東京・対面）</div>
+            <p class="pt-body">17年かけて築いた仕入れ先に同行。花材・資材の選び方をその場で学び、あなたのブランドに合う素材を見極める「目」を手に入れます。</p>
+            <div class="pt-tags">
+              <span class="pt-tag">仕入れ同行</span>
+              <span class="pt-tag">東京・対面</span>
+              <span class="pt-tag">資材選定</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="sec sec--outline" id="curriculum">
+      <p class="sec-label reveal">CURRICULUM</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Contents</h2>
+      <p class="sec-jp reveal">講座内容</p>
+      <div class="curriculum-grid reveal">
+        <div class="lesson-card">
+          <div class="lesson-label">Lesson 01</div>
+          <div class="lesson-en">Lecture &amp; Q&amp;A</div>
+          <div class="lesson-jp">講義 ＋ 質問会</div>
+          <div class="lesson-meta">120分 × 8回 ／ アーカイブ有 ／ 10時〜12時・20時〜22時</div>
+          <ul class="lesson-items">
+            <li>起業の全体像・コンセプト設定</li>
+            <li>インスタ実践１　アカウント設計・投稿戦略</li>
+            <li>インスタ実践２　リール・Canvaの使い方</li>
+            <li>商品・コース設計　高額講座の作り方</li>
+          </ul>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-label">Lesson 02</div>
+          <div class="lesson-en">Group Lesson</div>
+          <div class="lesson-jp">グループレッスン</div>
+          <div class="lesson-meta">60分 × 8回 ／ アーカイブ有 ／ 10時〜11時・21時〜22時</div>
+          <ul class="lesson-items">
+            <li>bloomishのレシピから厳選したデザインをオンラインでレッスン</li>
+            <li>リール・Canvaなど実践スキルも身につきます</li>
+            <li>オリジナルレッスンに落とし込めるようにします</li>
+            <li>教室スタイルに合わせてアレンジします</li>
+          </ul>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-label">Lesson 03</div>
+          <div class="lesson-en">Private Consulting</div>
+          <div class="lesson-jp">個別コンサル</div>
+          <div class="lesson-meta">60分 × 4回 ／ オンライン（Zoom）</div>
+          <ul class="lesson-items">
+            <li>あなたの教室に合わせた個別フィードバック</li>
+            <li>インスタ・コンテンツの具体的な改善提案</li>
+            <li>集客・販売の詰まりポイントを解消</li>
+            <li>月イチ〜月ニのペースで進めます</li>
+          </ul>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-label">Lesson 04</div>
+          <div class="lesson-en">Sourcing Tour</div>
+          <div class="lesson-jp">仕入れ同行ツアー ＆ 対面レッスン</div>
+          <div class="lesson-meta">3〜4時間 ／ 対面 ／ 4〜5ヶ月目（東京）</div>
+          <ul class="lesson-items">
+            <li>花材・資材の選び方をその場で解説</li>
+            <li>仕入れた資材でオリジナル作品制作</li>
+            <li>自分のブランドに合う「目」が養われます</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTLINE -->
+    <section class="sec" id="outline">
+      <p class="sec-label reveal">OUTLINE</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Overview</h2>
+      <p class="sec-jp reveal">講座概要</p>
+      <table class="outline-table reveal">
+        <tbody>
+          <tr><td>PERIOD</td><td>4ヶ月（目安）</td></tr>
+          <tr><td>FORMAT</td><td>オンライン（Zoom）＋ 東京対面1回</td></tr>
+          <tr><td>LECTURE</td><td>講義 × 8回 ／ グループレッスン × 8回 ／ 個別コンサル × 4回</td></tr>
+          <tr><td>ARCHIVE</td><td>全講義・グループレッスンはアーカイブ視聴可</td></tr>
+          <tr><td>BONUS</td><td>Canva講座（デザイン・販促物制作）／ リクエスト対応</td></tr>
+          <tr><td>CONTACT</td><td>LINEにてご相談受付</td></tr>
+        </tbody>
+      </table>
+      <div class="month-grid reveal" style="margin-top:48px;">
+        <div class="month-card">
+          <div class="month-label">Month 01</div>
+          <p class="month-body">コンセプト設計・インスタアカウント構築</p>
+        </div>
+        <div class="month-card">
+          <div class="month-label">Month 02</div>
+          <p class="month-body">リール制作・コース設計・商品づくり</p>
+        </div>
+        <div class="month-card">
+          <div class="month-label">Month 03</div>
+          <p class="month-body">集客・販売設計・LINE構築</p>
+        </div>
+        <div class="month-card">
+          <div class="month-label">Month 04</div>
+          <p class="month-body">仕入れ同行（東京）・最終調整・開講準備</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec sec--mid" id="faq">
+      <p class="sec-label reveal">Q &amp; A</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Frequently Asked</h2>
+      <p class="sec-jp reveal">よくあるご質問</p>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-mark">Q.</span><span class="faq-q-text">受講できない日はどうしたらいいですか？</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">全講義・グループレッスンはアーカイブ視聴が可能です。ご都合のよいときにご覧いただけます。</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-mark">Q.</span><span class="faq-q-text">受講料のほかにお金はかかりますか？</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">仕入れツアーに参加される場合は交通費と、その日購入される資材費はご自身での負担になります。</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-mark">Q.</span><span class="faq-q-text">資格を持っていない初心者でも受講できますか？</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">この講座は、お教室を始めたい方・すでにお教室をされている方向けのプログラムです。まず仕入れができるように資格取得することをおすすめします。技術をしっかりと身につけてから「魅せ方」と「仕組み」を学ぶことが、満席教室への最短ルートです。</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-mark">Q.</span><span class="faq-q-text">地方に住んでいますが、受講できますか？</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">もちろんです。講義・レッスン・個別コンサルはすべてオンライン。仕入れ同行ツアーのみ東京での対面となります。</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span class="faq-q-mark">Q.</span><span class="faq-q-text">副業・週末だけでも取り組めますか？</span><span class="faq-toggle">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">はい。講義は10時・20時の2時間帯から選べます。アーカイブもあるため、ご自身のペースで進めていただけます。</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW -->
+    <section class="sec" id="flow">
+      <p class="sec-label reveal">FLOW</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">How To Join</h2>
+      <p class="sec-jp reveal">申し込みの流れ</p>
+      <div class="flow-steps">
+        <div class="flow-step reveal">
+          <div class="flow-num">01</div>
+          <div>
+            <div class="flow-title">LINEに登録する</div>
+            <p class="flow-body">下記のLINEボタンから公式LINEに登録。LINEからもご相談いただけます。</p>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">02</div>
+          <div>
+            <div class="flow-title">無料個別相談を申し込む</div>
+            <p class="flow-body">30分のオンライン相談。現状のヒアリングと、講座の詳細をお伝えします。</p>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">03</div>
+          <div>
+            <div class="flow-title">ご入金・受講開始</div>
+            <p class="flow-body">ご相談後、受講をご希望の場合はお手続きのご案内をお送りします。</p>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">04</div>
+          <div>
+            <div class="flow-title">4ヶ月のプログラムスタート</div>
+            <p class="flow-body">講義・グループレッスン・個別コンサル・仕入れ同行と、段階的に進みます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESSAGE -->
+    <section class="sec sec--light" id="message">
+      <p class="sec-label reveal">MESSAGE</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Message</h2>
+      <p class="sec-jp reveal">あなたへのメッセージ</p>
+      <div class="message-wrap">
+        <p class="message-text reveal">
+          お花が好きで、先生になりたくて資格を取った。<br>
+          でも、どうやって集客すればいいか分からない。<br><br>
+          そんな方に伝えたいことがあります。<br><br>
+          売れる教室に必要なのは、技術の高さではなく<br>
+          「あなたにしかない世界観」と「届け方の順番」です。<br><br>
+          17年間、試行錯誤しながら積み上げてきた経験を<br>
+          あなたに体系化してお伝えできることを、<br>
+          心から楽しみにしています。
+        </p>
+        <div class="message-sig reveal">Shihoko Kono</div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="join-sec" id="join">
+      <h2 class="join-en reveal">Join Us</h2>
+      <p class="join-jp reveal">まずは話してみませんか</p>
+      <div class="join-btns reveal">
+        <a href="#flow" class="join-btn">無料個別相談に申し込む</a>
+        <a href="https://lin.ee/ZzdKPx2" target="_blank" class="join-btn join-btn--line">LINEで相談する</a>
+      </div>
+      <p class="join-note reveal">
+        無料 30分 ／ オンライン<br>
+        LINEからでもご相談いただけます
+      </p>
+    </section>
+
+    <footer>
+      bloomish Academy &nbsp;|&nbsp; お花教室プロデュース講座 &nbsp;|&nbsp; © bloomish Academy All Rights Reserved.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+// Anchor click → smooth scroll
+const lContent = document.querySelector('.l-content');
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    if (window.innerWidth <= 900) {
+      // SP: window scrolls
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+    } else {
+      // PC: l-content scrolls
+      const top = target.getBoundingClientRect().top + lContent.scrollTop;
+      lContent.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const ioRoot = window.innerWidth > 900 ? lContent : null;
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
+}, { threshold: 0.1, root: ioRoot });
+reveals.forEach(el => io.observe(el));
+
+// Active nav
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.l-nav__links a');
+const ioNav = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.l-nav__links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.3, root: ioRoot });
+sections.forEach(s => ioNav.observe(s));
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const ans = q.nextElementSibling;
+    const toggle = q.querySelector('.faq-toggle');
+    const isOpen = ans.style.maxHeight && ans.style.maxHeight !== '0px';
+    document.querySelectorAll('.faq-a').forEach(a => a.style.maxHeight = '0');
+    document.querySelectorAll('.faq-toggle').forEach(t => t.classList.remove('open'));
+    if (!isOpen) { ans.style.maxHeight = ans.scrollHeight + 'px'; toggle.classList.add('open'); }
+  });
+});
+</script>
+</body>
+</html>
