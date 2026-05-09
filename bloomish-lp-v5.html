@@ -407,60 +407,61 @@
     .point-list {
       display: flex;
       flex-direction: column;
-      gap: 80px;
+      gap: 64px;
+      margin-top: 40px;
     }
     .point-item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 52px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
-    .point-item.rev { direction: rtl; }
-    .point-item.rev > * { direction: ltr; }
-    .point-img img {
+    .pt-num-script {
+      font-family: var(--font-script);
+      color: var(--gold);
+      font-size: clamp(64px, 10vw, 100px);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .pt-title-en {
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 3.5px;
+      margin-bottom: 2px;
+    }
+    .pt-title-jp {
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: .55;
+      margin-bottom: 22px;
+    }
+    .point-img-wrap {
+      position: relative;
+      margin-right: 14px;
+      margin-bottom: 22px;
+    }
+    .point-img-wrap::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: -14px;
       width: 100%;
-      aspect-ratio: 4/3;
+      height: 100%;
+      background: var(--mid);
+      z-index: 0;
+    }
+    .point-img-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/2;
       object-fit: cover;
       display: block;
-    }
-    .pt-num {
-      font-family: var(--font-en);
-      font-size: 10px;
-      letter-spacing: 4px;
-      opacity: .35;
-      margin-bottom: 12px;
-    }
-    .pt-en {
-      font-family: var(--font-en);
-      font-size: 26px;
-      font-weight: 300;
-      letter-spacing: 4px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-    .pt-jp {
-      font-size: 13px;
-      letter-spacing: 2px;
-      opacity: .6;
-      margin-bottom: 20px;
     }
     .pt-body {
       font-size: 14px;
       letter-spacing: 1.5px;
       line-height: 2.1;
       opacity: .82;
-    }
-    .pt-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 18px;
-    }
-    .pt-tag {
-      font-size: 10px;
-      letter-spacing: 1.8px;
-      padding: 4px 12px;
-      border: 1px solid rgba(39,39,39,.28);
     }
 
     /* ── CURRICULUM ── */
@@ -735,7 +736,7 @@
       .sec { padding: 64px 28px; }
       .sol-grid { grid-template-columns: 1fr; }
       .profile-grid { grid-template-columns: 1fr; }
-      .point-item, .point-item.rev { grid-template-columns: 1fr; direction: ltr; }
+      .point-img-wrap { margin-right: 12px; }
       .curriculum-grid { grid-template-columns: 1fr; }
       .month-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -862,64 +863,35 @@
     <!-- POINT -->
     <section class="sec sec--light" id="point">
       <p class="sec-label reveal">POINT</p>
-      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">What You Get</h2>
-      <p class="sec-jp reveal">この講座でできること</p>
+      <h2 class="sec-en reveal" style="font-size:clamp(40px,6vw,64px);">Why You'll Grow</h2>
+      <p class="sec-jp reveal">受講生さんが飛躍する理由</p>
       <div class="point-list">
         <div class="point-item reveal">
-          <div class="point-img"><img src="images/point-01.jpg" alt="世界観づくり"></div>
-          <div>
-            <div class="pt-num">Point 01</div>
-            <div class="pt-en">World View</div>
-            <div class="pt-jp">世界観を言語化する</div>
-            <p class="pt-body">「なんとなく好き」を「これが私のスタイル」に変える。あなただけのコンセプトを作ることで、フォロワーが共感し、申し込みにつながる発信が自然に生まれます。</p>
-            <div class="pt-tags">
-              <span class="pt-tag">コンセプト設計</span>
-              <span class="pt-tag">ブランディング</span>
-              <span class="pt-tag">世界観構築</span>
-            </div>
+          <div class="pt-num-script">01</div>
+          <div class="pt-title-en">World View</div>
+          <div class="pt-title-jp">世界観を言語化する</div>
+          <div class="point-img-wrap">
+            <img src="images/LINE_ALBUM_プロモ用_260509_107.jpg" alt="世界観づくり">
           </div>
-        </div>
-        <div class="point-item rev reveal">
-          <div class="point-img"><img src="images/point-02.jpg" alt="SNS戦略"></div>
-          <div>
-            <div class="pt-num">Point 02</div>
-            <div class="pt-en">SNS Strategy</div>
-            <div class="pt-jp">SNSで申し込みを作る</div>
-            <p class="pt-body">投稿しても反応がない——その原因は発信量でなく「順番」。インスタグラムのアカウント設計からリール・Canvaの使い方まで、実践的なSNS戦略を学びます。</p>
-            <div class="pt-tags">
-              <span class="pt-tag">Instagram戦略</span>
-              <span class="pt-tag">リール制作</span>
-              <span class="pt-tag">Canva</span>
-            </div>
-          </div>
+          <p class="pt-body">「なんとなく好き」を「これが私のスタイル」に変える。あなただけのコンセプトを作ることで、フォロワーが共感し、申し込みにつながる発信が自然に生まれます。</p>
         </div>
         <div class="point-item reveal">
-          <div class="point-img"><img src="images/point-03.jpg" alt="高単価コース"></div>
-          <div>
-            <div class="pt-num">Point 03</div>
-            <div class="pt-en">High Value Course</div>
-            <div class="pt-jp">高単価コースを設計する</div>
-            <p class="pt-body">看板メニューとなる継続コースを作り、満席・完売の仕組みを整える。値下げしなくても「この先生に習いたい」と選ばれる商品設計を手に入れます。</p>
-            <div class="pt-tags">
-              <span class="pt-tag">コース設計</span>
-              <span class="pt-tag">高単価化</span>
-              <span class="pt-tag">集客設計</span>
-            </div>
+          <div class="pt-num-script">02</div>
+          <div class="pt-title-en">SNS Strategy</div>
+          <div class="pt-title-jp">SNSで申し込みを作る</div>
+          <div class="point-img-wrap">
+            <img src="images/LINE_ALBUM_プロモ用_260509_108.jpg" alt="SNS戦略">
           </div>
+          <p class="pt-body">投稿しても反応がない——その原因は発信量でなく「順番」。インスタグラムのアカウント設計からリール・Canvaの使い方まで、実践的なSNS戦略を学びます。</p>
         </div>
-        <div class="point-item rev reveal">
-          <div class="point-img"><img src="images/point-04.jpg" alt="仕入れ同行"></div>
-          <div>
-            <div class="pt-num">Point 04</div>
-            <div class="pt-en">Sourcing Tour</div>
-            <div class="pt-jp">仕入れの目を養う（東京・対面）</div>
-            <p class="pt-body">17年かけて築いた仕入れ先に同行。花材・資材の選び方をその場で学び、あなたのブランドに合う素材を見極める「目」を手に入れます。</p>
-            <div class="pt-tags">
-              <span class="pt-tag">仕入れ同行</span>
-              <span class="pt-tag">東京・対面</span>
-              <span class="pt-tag">資材選定</span>
-            </div>
+        <div class="point-item reveal">
+          <div class="pt-num-script">03</div>
+          <div class="pt-title-en">High Value Course</div>
+          <div class="pt-title-jp">高単価コースを設計する</div>
+          <div class="point-img-wrap">
+            <img src="images/LINE_ALBUM_プロモ用_260509_83.jpg" alt="高単価コース">
           </div>
+          <p class="pt-body">看板メニューとなる継続コースを作り、満席・完売の仕組みを整える。値下げしなくても「この先生に習いたい」と選ばれる商品設計を手に入れます。</p>
         </div>
       </div>
     </section>
