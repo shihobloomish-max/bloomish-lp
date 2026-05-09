@@ -39,7 +39,7 @@
       --outline:     #c8cace;
       --white:       #ffffff;
       --gold:        #b89a52;
-      --nav-w:       50vw;
+      --nav-w:       57vw;
       --font-en:     'Seasons', 'Cormorant Garamond', 游明朝体, 'Yu Mincho', YuMincho, 'ヒラギノ明朝 Pro', serif;
       --font-jp:     'Noto Serif JP', 'Hiragino Mincho ProN', serif;
       --font-script: 'Ruthie', cursive;
@@ -48,21 +48,29 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* 固定背景レイヤー */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(rgba(244,244,244,.55), rgba(244,244,244,.55)),
+        url('images/LINE_ALBUM_プロモ用_260509_162.jpg') center/cover no-repeat;
+    }
+
     html, body {
       font-family: var(--font-jp);
       font-size: 16px;
       color: var(--text);
+      background: transparent;
       letter-spacing: 1.6px;
       line-height: 1.8;
       height: 100%;
       overflow: hidden;
-      background:
-        linear-gradient(rgba(244,244,244,.55), rgba(244,244,244,.55)),
-        url('images/LINE_ALBUM_プロモ用_260509_162.jpg') center/cover no-repeat fixed;
     }
 
     /* ── LAYOUT: 左固定パネル + 右は body スクロール ── */
-    .lp-wrap { min-height: 100vh; }
+    .lp-wrap { min-height: 100vh; position: relative; z-index: 1; }
 
     /* 左パネル — position:fixed、bodyはスクロール */
     .l-nav {
@@ -761,6 +769,7 @@
 </head>
 <body>
 
+<div class="bg-layer"></div>
 <div class="lp-wrap">
 
   <!-- ═══ LEFT NAV ═══ -->
